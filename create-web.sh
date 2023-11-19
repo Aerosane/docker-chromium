@@ -1,3 +1,7 @@
+#/bin/sh
+
+apt update && apt upgrade -y
+
 docker run -d \
  --name=webtop \
  --security-opt seccomp=unconfined `#optional` \
