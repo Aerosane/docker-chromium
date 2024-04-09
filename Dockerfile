@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:alpine317
+FROM ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm
 
 # set version label
 ARG BUILD_DATE
@@ -10,11 +10,21 @@ LABEL maintainer="thelamer"
 ENV TITLE=Chromium
 
 RUN \
+  echo "**** add icon ****" && \
+  curl -o \
+    /kclient/public/icon.png \
+    https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/chromium-logo.png && \
   echo "**** install packages ****" && \
-  apk add --no-cache \
-    chromium && \
+  apt-get update && \
+  apt-get install -y --no-install-recommends \
+    chromium \
+    chromium-l10n && \
   echo "**** cleanup ****" && \
+  apt-get autoclean && \
   rm -rf \
+    /config/.cache \
+    /var/lib/apt/lists/* \
+    /var/tmp/* \
     /tmp/*
 
 # add local files
