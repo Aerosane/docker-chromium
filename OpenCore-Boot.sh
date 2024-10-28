@@ -17,16 +17,13 @@
 #
 ###############################################################################
 
-
 MY_OPTIONS="+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
 
-# This script works for Big Sur, Catalina, Mojave, and High Sierra. Tested with
-# macOS 10.15.6, macOS 10.14.6, and macOS 10.13.6.
-
-ALLOCATED_RAM="4096" # MiB
+# Updated specs for GitHub Codespaces with 100 GB RAM and 32-core CPU
+ALLOCATED_RAM="102400" # MiB (100 GB)
 CPU_SOCKETS="1"
-CPU_CORES="2"
-CPU_THREADS="4"
+CPU_CORES="16"          # 16 cores
+CPU_THREADS="2"         # 2 threads per core for a total of 32 vCPUs
 
 REPO_PATH="."
 OVMF_DIR="."
